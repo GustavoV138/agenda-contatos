@@ -1,4 +1,4 @@
-package com.agenda.entity;
+package com.agenda.entities;
 
 public class Endereco {
 

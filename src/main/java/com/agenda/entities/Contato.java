@@ -1,4 +1,4 @@
-package com.agenda.entity;
+package com.agenda.entities;
 
 public class Contato {
 
@@ -46,10 +46,11 @@ public class Contato {
 
     @Override
     public String toString() {
-        return "Pessoa: \n" +
-                "Nome: " + nome +
-                ", Telefone: " + telefone +
-                ", Email: " + email +
-                "\nEndereço: \n" + endereco;
+        return "\nContato\n{" +
+                "nome='" + nome + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", email='" + email + '\'' +
+                ", endereco=" + endereco +
+                '}';
     }
 }
