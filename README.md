@@ -20,16 +20,6 @@ Java 17+ (pode ser ajustado conforme sua versão).
 
 Nenhuma dependência externa, por enquanto. Apenas Java puro.
 
-📂 Estrutura básica do projeto
-src/
-└── agenda/
-├── entity/
-│    └── Contato.java      # Classe que representa um contato
-│    └── Endereco.java      # Classe que representa um endereço de um contato
-│    └── Agenda.java      # Classe que representa a agenda com os contatos
-├── service/
-└── Main.java              # Classe principal para rodar o projeto
-
 🎯 Objetivo
 
 Este projeto foi feito para praticar fundamentos de Java e OO, servindo como ponto de partida para evoluir futuramente para:
