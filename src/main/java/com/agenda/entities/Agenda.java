@@ -66,17 +66,37 @@ public class Agenda {
             System.out.println(listaPorNome);
             return;
         }
+
         System.out.println("Nenhum contato com este nome.");
+    }
+
+    public void atualizarContato(String tel, Contato contato) {
+
+        if(tel.isEmpty()){
+            System.out.println("O campo não foi preenchido.");
+            return;
+        }
+
+        for(Contato c : listaContatos) {
+            if (c.getTelefone().equals(tel)) {
+                c.setNome(contato.getNome());
+                c.setEmail(contato.getEmail());
+                c.setEndereco(contato.getEndereco());
+
+                System.out.println("Contato atualizado");
+                return;
+            }
+        }
+
+        System.out.println("Contato não encontrado.");
+    }
+
+    public List<Contato> listarContatos() {
+        return listaContatos;
     }
 
     public List<Contato> getListaContatos() {
         return listaContatos;
     }
 
-    @Override
-    public String toString() {
-        return "Agenda{" +
-                "listaContatos:\n" + listaContatos +
-                '}';
-    }
 }
