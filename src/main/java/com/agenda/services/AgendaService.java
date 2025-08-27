@@ -2,6 +2,7 @@ package com.agenda.services;
 
 import com.agenda.entities.Agenda;
 import com.agenda.entities.Contato;
+import com.agenda.repositories.ContatoRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 public class AgendaService {
 
     Agenda agenda = new Agenda();
+    ContatoRepository repository = new ContatoRepository();
 
     List<Contato> contatos = agenda.getListaContatos();
 
@@ -25,7 +27,7 @@ public class AgendaService {
                     return;
                 }
             }
-            contatos.add(contato);
+            repository.adicionarDB(contato);
             System.out.println("Contato adicionado com sucesso!");
         }
         catch (NullPointerException e) {
@@ -91,6 +93,6 @@ public class AgendaService {
     }
 
     public List<Contato> listarContatos() {
-        return contatos;
+        return repository.consultarTudo();
     }
 }

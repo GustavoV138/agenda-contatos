@@ -2,10 +2,14 @@ package com.agenda;
 
 import com.agenda.entities.Contato;
 import com.agenda.entities.Endereco;
+import com.agenda.repositories.ContatoRepository;
 import com.agenda.services.AgendaService;
 
 public class Main {
     public static void main(String[] args) {
+
+        ContatoRepository conn = new ContatoRepository();
+        conn.inicializarTabela();
 
         // Objetos
         Contato contato = new Contato();
@@ -19,14 +23,14 @@ public class Main {
         Endereco endereco2 = new Endereco("56166", 234, "Jhon People", "PB");
         contato2.setEndereco(endereco2);
         contato2.setNome("Joao");
-        contato2.setTelefone("");
+        contato2.setTelefone("218998566");
         contato2.setEmail("asdalskd@email.com");
 
         Contato contato3 = new Contato();
         Endereco endereco3 = new Endereco("112233", 11, "Lorem ipsum", "SC");
         contato3.setEndereco(endereco3);
         contato3.setNome("Gustavo");
-        contato3.setTelefone("65496865");
+        contato3.setTelefone("65454612135");
         contato3.setEmail("jooji235@email.com");
 
 
@@ -37,6 +41,10 @@ public class Main {
         agenda.adicionarContato(contato2);
         agenda.adicionarContato(contato3);
 
+        System.out.println("\n Lista Contatos:");
+        System.out.println(agenda.listarContatos());
+
+/*
         // Remover contatos por nome/telefone
         System.out.println("\nRemovendo contatos: ");
         agenda.removerContato("Joao", "123456");
@@ -60,7 +68,7 @@ public class Main {
         System.out.println("\nAgenda atualizada:");
 
         System.out.println(agenda.listarContatos());
-
+*/
 
     }
 }
