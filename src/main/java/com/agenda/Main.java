@@ -1,8 +1,8 @@
 package com.agenda;
 
-import com.agenda.entities.Agenda;
 import com.agenda.entities.Contato;
 import com.agenda.entities.Endereco;
+import com.agenda.services.AgendaService;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,19 +19,19 @@ public class Main {
         Endereco endereco2 = new Endereco("56166", 234, "Jhon People", "PB");
         contato2.setEndereco(endereco2);
         contato2.setNome("Joao");
-        contato2.setTelefone("123456");
+        contato2.setTelefone("");
         contato2.setEmail("asdalskd@email.com");
 
         Contato contato3 = new Contato();
         Endereco endereco3 = new Endereco("112233", 11, "Lorem ipsum", "SC");
         contato3.setEndereco(endereco3);
         contato3.setNome("Gustavo");
-        contato3.setTelefone("987654");
+        contato3.setTelefone("65496865");
         contato3.setEmail("jooji235@email.com");
 
 
         // Adicionar novos contatos
-        Agenda agenda = new Agenda();
+        AgendaService agenda = new AgendaService();
         System.out.println("\nAdicionando contatos:");
         agenda.adicionarContato(contato);
         agenda.adicionarContato(contato2);
@@ -60,5 +60,7 @@ public class Main {
         System.out.println("\nAgenda atualizada:");
 
         System.out.println(agenda.listarContatos());
+
+
     }
 }
