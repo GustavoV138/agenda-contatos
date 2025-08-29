@@ -30,45 +30,42 @@ public class Main {
         Endereco endereco3 = new Endereco("112233", 11, "Lorem ipsum", "SC");
         contato3.setEndereco(endereco3);
         contato3.setNome("Gustavo");
-        contato3.setTelefone("65454612135");
+        contato3.setTelefone("123456789");
         contato3.setEmail("jooji235@email.com");
 
+        Contato contato4 = new Contato();
+        Endereco endereco4 = new Endereco("112233", 11, "Lorem ipsum", "SC");
+        contato4.setEndereco(endereco4);
+        contato4.setNome("Maria");
+        contato4.setTelefone("456123987");
+        contato4.setEmail("maria123@email.com");
 
-        // Adicionar novos contatos
+
+        // ADICIONAR CONTATOS
         AgendaService agenda = new AgendaService();
-        System.out.println("\nAdicionando contatos:");
+        System.out.println("\nAdicionando contatos...");
         agenda.adicionarContato(contato);
         agenda.adicionarContato(contato2);
         agenda.adicionarContato(contato3);
+        agenda.adicionarContato(contato4);
 
+        // LISTAR CONTATOS
         System.out.println("\n Lista Contatos:");
         System.out.println(agenda.listarContatos());
 
-/*
-        // Remover contatos por nome/telefone
-        System.out.println("\nRemovendo contatos: ");
-        agenda.removerContato("Joao", "123456");
+        // REMOVER CONTATOS
+        //System.out.println("\nRemovendo contatos...");
+        //agenda.removerContato("Gustavo", "123456789");
 
-        System.out.println("");
-        System.out.println(agenda.listarContatos());
+        //System.out.println("");
+        //System.out.println("Lista atualizada:");
 
-        // Filtrar por NOME
-        System.out.println("\nContatos por nome:");
+        //System.out.println(agenda.listarContatos());
+
+        // BUSCAR POR NOME
+        System.out.println("\nBuscando por nome:");
         agenda.buscarPorNome("Gustavo");
 
-        // Atualizar contatos
-        Contato contato4 = new Contato();
-        Endereco endereco4 = new Endereco("998550", 541, "Tal", "RO");
-        contato4.setEndereco(endereco4);
-        contato4.setNome("Roberval");
-        contato4.setEmail("roberval35@email.com");
-
-        System.out.println("");
-        agenda.atualizarContato("987654", contato4);
-        System.out.println("\nAgenda atualizada:");
-
-        System.out.println(agenda.listarContatos());
-*/
 
     }
 }

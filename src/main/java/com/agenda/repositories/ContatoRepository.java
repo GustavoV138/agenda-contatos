@@ -7,12 +7,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// Classe para conexao no DB
 public class ContatoRepository {
 
 
     Connection conn;
     Statement st;
     PreparedStatement stmt;
+
 
     // Credenciais do banco
     private final String DB_URL = "jdbc:h2:mem:agenda_db;DB_CLOSE_DELAY=-1";
@@ -27,7 +29,7 @@ public class ContatoRepository {
             System.out.println("Conexão estabelecida!");
 
             // Passando uma query SQL
-            // Abrindo o st
+            // Abrindo o statement
             st = conn.createStatement();
             st.executeUpdate("CREATE TABLE IF NOT EXISTS contatoTb (" +
                     "id INT AUTO_INCREMENT PRIMARY KEY," +
@@ -61,6 +63,56 @@ public class ContatoRepository {
         }
     }
 
+    public void removerDB(Contato contato) {
+
+        String sql = "DELETE FROM contatoTb WHERE nome = ? AND telefone = ?";
+
+        try {
+            conn = DriverManager.getConnection(DB_URL, USER_DB, PASS_DB);
+
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, contato.getNome());
+            stmt.setString(2, contato.getTelefone());
+
+            stmt.executeUpdate();
+
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Contato> buscarPorNomeDB(String nome) {
+        List<Contato> agendaPorNome = new ArrayList<>();
+
+        String sql = "SELECT * FROM contatoTb WHERE nome = ?";
+
+        try {
+            conn = DriverManager.getConnection(DB_URL, USER_DB, PASS_DB);
+
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, nome);
+
+            ResultSet result = stmt.executeQuery();
+
+            while(result.next()) {
+                String nomeContato = result.getString("nome");
+                String telefone = result.getString("telefone");
+                String email = result.getString("email");
+                Endereco endereco = null;
+                Contato contato = new Contato(nomeContato, telefone, email, endereco);
+                agendaPorNome.add(contato);
+            }
+
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return agendaPorNome;
+    }
+
     public List<Contato> consultarTudo(){
         List<Contato> agenda = new ArrayList<>();
 
@@ -86,6 +138,7 @@ public class ContatoRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return agenda;
     }
 

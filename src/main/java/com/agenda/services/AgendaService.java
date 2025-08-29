@@ -9,20 +9,20 @@ import java.util.List;
 
 public class AgendaService {
 
-    Agenda agenda = new Agenda();
     ContatoRepository repository = new ContatoRepository();
 
-    List<Contato> contatos = agenda.getListaContatos();
+    // Pra usar tem que lembrar de atualizar
+    //List<Contato> contatos = repository.consultarTudo();
 
     public void adicionarContato(Contato contato) {
+
         try {
             if(contato.getNome().isEmpty() || contato.getTelefone().isEmpty()){
                 System.out.println("Campos obrigatórios não foram preenchidos.");
                 return;
             }
-            for (Contato c: contatos){
+            for (Contato c: repository.consultarTudo()){
                 if(contato.getTelefone().equals(c.getTelefone())){
-                    System.out.println(contato);
                     System.out.println("Contato com número de telefone já registrado. Tente com outro.\n");
                     return;
                 }
@@ -42,9 +42,9 @@ public class AgendaService {
             return;
         }
 
-        for(Contato c : contatos) {
+        for(Contato c : repository.consultarTudo()) {
             if(c.getNome().equals(nome) && c.getTelefone().equals(tel)) {
-                contatos.remove(c);
+                repository.removerDB(c);
                 System.out.println("Usuário removido com sucesso.");
                 return;
             }
@@ -60,17 +60,13 @@ public class AgendaService {
             return;
         }
 
-        listaPorNome = contatos.stream()
-                .filter(c -> c.getNome().equalsIgnoreCase(nome))
-                .toList();
-        if(!listaPorNome.isEmpty()) {
-            System.out.println(listaPorNome);
+        if(repository.buscarPorNomeDB(nome).isEmpty()) {
+            System.out.println("Nenhum contato foi encontrado com este nome.");
             return;
         }
-
-        System.out.println("Nenhum contato com este nome.");
+        System.out.println(repository.buscarPorNomeDB(nome));
     }
-
+/*
     public void atualizarContato(String tel, Contato contato) {
 
         if(tel.isEmpty()){
@@ -91,7 +87,7 @@ public class AgendaService {
 
         System.out.println("Contato não encontrado.");
     }
-
+*/
     public List<Contato> listarContatos() {
         return repository.consultarTudo();
     }
