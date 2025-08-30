@@ -53,7 +53,6 @@ public class AgendaService {
     }
 
     public void buscarPorNome(String nome) {
-        List<Contato> listaPorNome = new ArrayList<>();
 
         if(nome.isEmpty()){
             System.out.println("O campo não foi preenchido.");
@@ -66,7 +65,7 @@ public class AgendaService {
         }
         System.out.println(repository.buscarPorNomeDB(nome));
     }
-/*
+
     public void atualizarContato(String tel, Contato contato) {
 
         if(tel.isEmpty()){
@@ -74,12 +73,17 @@ public class AgendaService {
             return;
         }
 
-        for(Contato c : contatos) {
+        for(Contato c : repository.consultarTudo()) {
             if (c.getTelefone().equals(tel)) {
-                c.setNome(contato.getNome());
-                c.setEmail(contato.getEmail());
-                c.setEndereco(contato.getEndereco());
+                // Caso um dos campos esteja  vazio, o nome original permanece imutavél
+                if(contato.getNome().isEmpty()){
+                    contato.setNome(c.getNome());
+                }
+                if(contato.getEmail().isEmpty()){
+                    contato.setEmail(c.getEmail());
+                }
 
+                repository.atualizarDB(tel, contato);
                 System.out.println("Contato atualizado");
                 return;
             }
@@ -87,7 +91,7 @@ public class AgendaService {
 
         System.out.println("Contato não encontrado.");
     }
-*/
+
     public List<Contato> listarContatos() {
         return repository.consultarTudo();
     }

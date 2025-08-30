@@ -113,6 +113,27 @@ public class ContatoRepository {
         return agendaPorNome;
     }
 
+    public void atualizarDB(String telefone, Contato contato) {
+
+        String sql = "UPDATE contatoTb SET nome = ?, email = ? WHERE telefone = ? ";
+
+        try{
+            conn = DriverManager.getConnection(DB_URL, USER_DB, PASS_DB);
+            stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, contato.getNome());
+            stmt.setString(2, contato.getEmail());
+            stmt.setString(3, telefone);
+
+            stmt.executeUpdate();
+
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public List<Contato> consultarTudo(){
         List<Contato> agenda = new ArrayList<>();
 

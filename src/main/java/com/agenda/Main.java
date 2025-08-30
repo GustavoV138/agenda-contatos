@@ -66,6 +66,18 @@ public class Main {
         System.out.println("\nBuscando por nome:");
         agenda.buscarPorNome("Gustavo");
 
+        // ATUALIZAR CONTATO
+        Contato contato5 = new Contato();
+        Endereco endereco5 = new Endereco("112233", 11, "Lorem ipsum", "SC");
+        contato5.setEndereco(endereco5);
+        contato5.setNome("");
+        contato5.setEmail("meunovoemail123@email.com");
+
+        System.out.println("\nAtualizando contato...");
+        agenda.atualizarContato("123456789", contato5);
+
+        System.out.println("\nLista Contatos atualizada:");
+        System.out.println(agenda.listarContatos());
 
     }
 }
